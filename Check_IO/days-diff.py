@@ -18,7 +18,7 @@ def days_diff(a, b):
     #Returns absolute value
     return(abs(c.days))
     """
-    #Single line return, most elegant 
+    #Single line return, most elegant
     return(abs((date(*a)- date(*b)).days))
 
 if __name__ == '__main__':
