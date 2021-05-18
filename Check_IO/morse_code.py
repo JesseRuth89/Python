@@ -16,7 +16,7 @@ MORSE = {'.-':    'a', '-...':  'b', '-.-.':  'c',
 def morse_decoder(code):
     decode = ""
     first_check = True
-    for x in code.split("  "):
+    for x in code.split(" "):
         if (MORSE.get(x)) is None:
             decode = decode + " "
             continue
