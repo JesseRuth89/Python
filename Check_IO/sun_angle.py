@@ -1,8 +1,9 @@
 def sun_angle(time):
     # Splitting the string into a list
-    time = time.split(":")
+    h, m = time.split(":")
     # Converting the base 60 min to a float
-    time = float(time[0]) + float(time[1]) * (1/60)
+    time = float(h) + float(m) * (1/60)
+    print(time)
     # only return when the sun is betwen 6am and 6pm
     if time < 6.0 or time > 18.00:
         return "I don't see the sun!"
