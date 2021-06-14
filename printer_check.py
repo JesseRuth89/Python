@@ -5,6 +5,26 @@ import socket
 import time
 import concurrent.futures
 import os
+import argparse
+
+
+def define_logging(default):
+    # creating log in current working dir
+    if default > 20:
+        default = 10
+    logging.basicConfig(
+        filename='printer_port_check.log',
+        # new log file each run
+        filemode='w',
+        level=default
+    )
+
+
+def define_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--port', type=int, default=9100, help='port used to check against, default 9100')
+    parser.add_argument('-v', '--verbose', action='count', default=20, help='debug messages')
+    return parser.parse_args()
 
 
 def gather_printers() -> list:
@@ -38,25 +58,29 @@ def port_check(address, port):
 
 
 def main():
-    # creating log in current working dir
-    logging.basicConfig(
-        filename='printer_check.log',
-        # new log file each run
-        filemode='w',
-        level=logging.DEBUG
-    )
+    directory_path = os.getcwd()
+    # get parser options
+    args = define_parser()
+    # set logging
+    define_logging(args.verbose)
+    print(f"Log file created {directory_path}/printer_port_check.log")
+    print()
+
     logging.info('Printer check started')
     print('Gathering system printer(s)...')
-    # printers = gather_printers()
-    port = 22
-    printers = ['shsohapp1', 'shsohapp2', 'shsohapp3', 'baycflapp1', 'baycfldb4']
+    printers = gather_printers()
     print(f'{len(printers)} printer(s) defined on this system')
+    print()
 
     # multi-threading port_check via executor
+    print(f'Checking printers against port {args.port}')
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        [executor.submit(port_check, printer, port) for printer in printers]
-
+        [executor.submit(port_check, printer, args.port) for printer in printers]
+    print(f'Check {directory_path}/printer_port_check.log for results')
+    print()
     logging.info('Printer check ended')
+
+
 if __name__ == '__main__':
     start = time.perf_counter()
     main()
