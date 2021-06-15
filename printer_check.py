@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+NAME:
+    printer_port_check.py
+AUTHOR:
+    Jesse Ruth (jr019593) -CWx
+SYNOPSIS:
+    Parses lpstat for defined printers and checks connectivity against -port [default 9100]
+"""
 import subprocess
 import logging
 import socket
