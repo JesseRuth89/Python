@@ -7,7 +7,7 @@ import time
 conn_info = {'host': 'CERNOCRSVERTDB-QUERY.CERNERASP.com',
              'port': 5433,
              'user': 'jr019593',
-             'password': 'Jes496212?',
+             'password': '***password***',
              'database': 'Cerner',
              # default throw error on invalid UTF-8 results
              'unicode_error': 'strict',
