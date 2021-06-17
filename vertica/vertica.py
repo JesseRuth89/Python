@@ -7,7 +7,7 @@ import time
 conn_info = {'host': 'CERNOCRSVERTDB-QUERY.CERNERASP.com',
              'port': 5433,
              'user': 'jr019593',
-             'password': 'Jes496212?',
+             'password': '',
              'database': 'Cerner',
              # default throw error on invalid UTF-8 results
              'unicode_error': 'strict',
@@ -16,7 +16,7 @@ conn_info = {'host': 'CERNOCRSVERTDB-QUERY.CERNERASP.com',
              'use_prepared_statements': False,
              # 5 seconds timeout for a socket operation (Establishing a TCP connection or read/write operation)
              # this might need to be adjusted, it will randomly timeout
-             'connection_timeout': 5}
+             'connection_timeout': 10}
 
 # using with for auto connection closing after usage
 query = "select distinct client,domain,instancehost, instancename " \
@@ -37,7 +37,7 @@ with vertica_python.connect(**conn_info) as connection:
     for results in cur.fetchall():
         print(results)
 end = time.perf_counter()
-print(f'Query executed in:{round(end - start, 2)} second(s)')
+print(f'Query executed in: {round(end - start, 2)} second(s)')
 
 
 
