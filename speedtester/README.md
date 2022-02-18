@@ -1,5 +1,6 @@
 ## Speedtester v.01
 Project utilizes the [speedtest.net executable](https://www.speedtest.net/apps/cli "speedtest.net executable")  to gather network statistics
+viewable results on [Grafana](https://jesseruth.grafana.net)
 
 Saves the results to a Azure instance of postgreSQL
 ```
@@ -15,6 +16,5 @@ Completed!
 - Check errors on executings 
 - Allow command line arguments 
 - Setup logging module 
-- Report on data via panadas/Grafana
 - Auto download speedtest for your OS
 - Gather additional details if poor network performance is detected
